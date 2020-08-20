@@ -25,7 +25,6 @@ import retrofit2.http.Path;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.Response;
-import retrofit2.http.Url;
 import rx.functions.Func1;
 import rx.Observable;
 
@@ -59,9 +58,6 @@ public class QuerysInner {
         @POST("{scope}/providers/Microsoft.CostManagement/query")
         Observable<Response<ResponseBody>> usage(@Path(value = "scope", encoded = true) String scope, @Query("api-version") String apiVersion, @Body QueryDefinition parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
-        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.microsoft.azure.management.costmanagement.v2019_11_01.Querys usage" })
-        @POST
-        Observable<Response<ResponseBody>> usageNext(@Url String nextUrl, @Body QueryDefinition parameters, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
     }
 
     /**
@@ -78,10 +74,6 @@ public class QuerysInner {
         return usageWithServiceResponseAsync(scope, parameters).toBlocking().single().body();
     }
 
-    public QueryResultInner usageNext(String url, QueryDefinition parameters) {
-        return usageNextWithServiceResponseAsync(url, parameters).toBlocking().single().body();
-    }
-
     /**
      * Query the usage data for scope defined.
      *
@@ -95,10 +87,6 @@ public class QuerysInner {
         return ServiceFuture.fromResponse(usageWithServiceResponseAsync(scope, parameters), serviceCallback);
     }
 
-    public ServiceFuture<QueryResultInner> usageNextAsync(String url, QueryDefinition parameters, final ServiceCallback<QueryResultInner> serviceCallback) {
-        return ServiceFuture.fromResponse(usageNextWithServiceResponseAsync(url, parameters), serviceCallback);
-    }
-
     /**
      * Query the usage data for scope defined.
      *
@@ -109,15 +97,6 @@ public class QuerysInner {
      */
     public Observable<QueryResultInner> usageAsync(String scope, QueryDefinition parameters) {
         return usageWithServiceResponseAsync(scope, parameters).map(new Func1<ServiceResponse<QueryResultInner>, QueryResultInner>() {
-            @Override
-            public QueryResultInner call(ServiceResponse<QueryResultInner> response) {
-                return response.body();
-            }
-        });
-    }
-
-    public Observable<QueryResultInner> usageNextAsync(String url, QueryDefinition parameters) {
-        return usageNextWithServiceResponseAsync(url, parameters).map(new Func1<ServiceResponse<QueryResultInner>, QueryResultInner>() {
             @Override
             public QueryResultInner call(ServiceResponse<QueryResultInner> response) {
                 return response.body();
@@ -145,31 +124,6 @@ public class QuerysInner {
         }
         Validator.validate(parameters);
         return service.usage(scope, this.client.apiVersion(), parameters, this.client.acceptLanguage(), this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<QueryResultInner>>>() {
-                @Override
-                public Observable<ServiceResponse<QueryResultInner>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<QueryResultInner> clientResponse = usageDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
-                    }
-                }
-            });
-    }
-
-    public Observable<ServiceResponse<QueryResultInner>> usageNextWithServiceResponseAsync(String url, QueryDefinition parameters) {
-        if (url == null) {
-            throw new IllegalArgumentException("Parameter scope is required and cannot be null.");
-        }
-        if (this.client.apiVersion() == null) {
-            throw new IllegalArgumentException("Parameter this.client.apiVersion() is required and cannot be null.");
-        }
-        if (parameters == null) {
-            throw new IllegalArgumentException("Parameter parameters is required and cannot be null.");
-        }
-        Validator.validate(parameters);
-        return service.usageNext(url, parameters, this.client.acceptLanguage(), this.client.userAgent())
             .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<QueryResultInner>>>() {
                 @Override
                 public Observable<ServiceResponse<QueryResultInner>> call(Response<ResponseBody> response) {

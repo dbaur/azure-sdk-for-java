@@ -26,6 +26,4 @@ public interface Querys extends HasInner<QuerysInner> {
      */
     Observable<QueryResult> usageAsync(String scope, QueryDefinition parameters);
 
-    Observable<QueryResult> usageNextAsync(String url, QueryDefinition parameters);
-
 }

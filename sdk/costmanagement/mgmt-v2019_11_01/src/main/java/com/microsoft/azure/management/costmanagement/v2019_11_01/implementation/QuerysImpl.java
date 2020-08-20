@@ -40,17 +40,4 @@ class QuerysImpl extends WrapperImpl<QuerysInner> implements Querys {
         });
     }
 
-    @Override
-    public Observable<QueryResult> usageNextAsync(String url,
-        QueryDefinition parameters) {
-        QuerysInner client = this.inner();
-        return client.usageNextAsync(url, parameters)
-            .map(new Func1<QueryResultInner, QueryResult>() {
-                @Override
-                public QueryResult call(QueryResultInner inner) {
-                    return new QueryResultImpl(inner, manager());
-                }
-            });
-    }
-
 }
