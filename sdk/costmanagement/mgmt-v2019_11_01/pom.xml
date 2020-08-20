@@ -15,7 +15,7 @@
         <relativePath>../../parents/azure-arm-parent</relativePath>
     </parent>
     <artifactId>azure-mgmt-costmanagement</artifactId>
-    <version>1.0.0-beta</version>
+    <version>1.0.0-beta-dbaur</version>
     <packaging>jar</packaging>
     <name>Microsoft Azure SDK for CostManagement Management</name>
     <description>This package contains Microsoft CostManagement Management SDK.</description>
