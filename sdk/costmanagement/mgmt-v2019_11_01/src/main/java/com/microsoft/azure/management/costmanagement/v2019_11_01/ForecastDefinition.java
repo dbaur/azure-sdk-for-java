@@ -25,8 +25,8 @@ public class ForecastDefinition {
     /**
      * Has time period for pulling data for the forecast.
      */
-    @JsonProperty(value = "queryTimePeriod")
-    private QueryTimePeriod queryTimePeriod;
+    @JsonProperty(value = "timePeriod")
+    private QueryTimePeriod timePeriod;
 
     /**
      * The time frame for pulling data for the forecast. If custom, then a specific time period must be provided.
@@ -67,13 +67,13 @@ public class ForecastDefinition {
         return this;
     }
 
-    public QueryTimePeriod getQueryTimePeriod() {
-        return queryTimePeriod;
+    public QueryTimePeriod getTimePeriod() {
+        return timePeriod;
     }
 
     public ForecastDefinition withQueryTimePeriod(
         QueryTimePeriod queryTimePeriod) {
-        this.queryTimePeriod = queryTimePeriod;
+        this.timePeriod = queryTimePeriod;
         return this;
     }
 

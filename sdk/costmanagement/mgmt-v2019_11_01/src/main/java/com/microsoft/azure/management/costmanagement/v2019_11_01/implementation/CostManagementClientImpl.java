@@ -17,18 +17,23 @@ import com.microsoft.rest.RestClient;
  */
 public class CostManagementClientImpl extends AzureServiceClient {
 
-    /** the {@link AzureClient} used for long running operations. */
+    /**
+     * the {@link AzureClient} used for long running operations.
+     */
     private AzureClient azureClient;
 
     /**
      * Gets the {@link AzureClient} used for long running operations.
+     *
      * @return the azure client;
      */
     public AzureClient getAzureClient() {
         return this.azureClient;
     }
 
-    /** Version of the API to be used with the client request. The current version is 2019-11-01. */
+    /**
+     * Version of the API to be used with the client request. The current version is 2019-11-01.
+     */
     private String apiVersion;
 
     /**
@@ -40,7 +45,9 @@ public class CostManagementClientImpl extends AzureServiceClient {
         return this.apiVersion;
     }
 
-    /** Azure Subscription ID. */
+    /**
+     * Azure Subscription ID.
+     */
     private String subscriptionId;
 
     /**
@@ -63,7 +70,9 @@ public class CostManagementClientImpl extends AzureServiceClient {
         return this;
     }
 
-    /** The preferred language for the response. */
+    /**
+     * The preferred language for the response.
+     */
     private String acceptLanguage;
 
     /**
@@ -86,7 +95,9 @@ public class CostManagementClientImpl extends AzureServiceClient {
         return this;
     }
 
-    /** The retry timeout in seconds for Long Running Operations. Default value is 30. */
+    /**
+     * The retry timeout in seconds for Long Running Operations. Default value is 30.
+     */
     private int longRunningOperationRetryTimeout;
 
     /**
@@ -109,11 +120,15 @@ public class CostManagementClientImpl extends AzureServiceClient {
         return this;
     }
 
-    /** Whether a unique x-ms-client-request-id should be generated. When set to true a unique x-ms-client-request-id value is generated and included in each request. Default is true. */
+    /**
+     * Whether a unique x-ms-client-request-id should be generated. When set to true a unique x-ms-client-request-id
+     * value is generated and included in each request. Default is true.
+     */
     private boolean generateClientRequestId;
 
     /**
-     * Gets Whether a unique x-ms-client-request-id should be generated. When set to true a unique x-ms-client-request-id value is generated and included in each request. Default is true.
+     * Gets Whether a unique x-ms-client-request-id should be generated. When set to true a unique
+     * x-ms-client-request-id value is generated and included in each request. Default is true.
      *
      * @return the generateClientRequestId value.
      */
@@ -122,7 +137,8 @@ public class CostManagementClientImpl extends AzureServiceClient {
     }
 
     /**
-     * Sets Whether a unique x-ms-client-request-id should be generated. When set to true a unique x-ms-client-request-id value is generated and included in each request. Default is true.
+     * Sets Whether a unique x-ms-client-request-id should be generated. When set to true a unique
+     * x-ms-client-request-id value is generated and included in each request. Default is true.
      *
      * @param generateClientRequestId the generateClientRequestId value.
      * @return the service client itself
@@ -139,6 +155,7 @@ public class CostManagementClientImpl extends AzureServiceClient {
 
     /**
      * Gets the DimensionsInner object to access its operations.
+     *
      * @return the DimensionsInner object.
      */
     public DimensionsInner dimensions() {
@@ -152,6 +169,7 @@ public class CostManagementClientImpl extends AzureServiceClient {
 
     /**
      * Gets the QuerysInner object to access its operations.
+     *
      * @return the QuerysInner object.
      */
     public QuerysInner querys() {
@@ -165,6 +183,7 @@ public class CostManagementClientImpl extends AzureServiceClient {
 
     /**
      * Gets the ForecastsInner object to access its operations.
+     *
      * @return the ForecastsInner object.
      */
     public ForecastsInner forecasts() {
@@ -178,6 +197,7 @@ public class CostManagementClientImpl extends AzureServiceClient {
 
     /**
      * Gets the ExportsInner object to access its operations.
+     *
      * @return the ExportsInner object.
      */
     public ExportsInner exports() {
@@ -191,6 +211,7 @@ public class CostManagementClientImpl extends AzureServiceClient {
 
     /**
      * Gets the OperationsInner object to access its operations.
+     *
      * @return the OperationsInner object.
      */
     public OperationsInner operations() {
@@ -209,7 +230,7 @@ public class CostManagementClientImpl extends AzureServiceClient {
     /**
      * Initializes an instance of CostManagementClient client.
      *
-     * @param baseUrl the base URL of the host
+     * @param baseUrl     the base URL of the host
      * @param credentials the management credentials for Azure
      */
     public CostManagementClientImpl(String baseUrl, ServiceClientCredentials credentials) {
@@ -236,6 +257,7 @@ public class CostManagementClientImpl extends AzureServiceClient {
         this.querys = new QuerysInner(restClient().retrofit(), this);
         this.exports = new ExportsInner(restClient().retrofit(), this);
         this.operations = new OperationsInner(restClient().retrofit(), this);
+        this.forecasts = new ForecastsInner(restClient().retrofit(), this);
         this.azureClient = new AzureClient(this);
     }
 

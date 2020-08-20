@@ -61,7 +61,7 @@ public class ForecastsInner {
 
         @Headers({"Content-Type: application/json; charset=utf-8",
             "x-ms-logging-context: com.microsoft.azure.management.costmanagement.v2019_11_01.Forecasts usage"})
-        @POST("{scope}/providers/Microsoft.CostManagement/query")
+        @POST("{scope}/providers/Microsoft.CostManagement/forecast")
         Observable<Response<ResponseBody>> forecast(
             @Path(value = "scope", encoded = true) String scope,
             @Query("api-version") String apiVersion, @Body ForecastDefinition parameters,
