@@ -36,7 +36,7 @@ public class QueryFilter {
     /**
      * Has comparison expression for a dimension.
      */
-    @JsonProperty(value = "dimension")
+    @JsonProperty(value = "dimensions")
     private QueryComparisonExpression dimension;
 
     /**
